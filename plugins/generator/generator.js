@@ -3,7 +3,7 @@ var Plugin = require('../../lib/plugin-api'), util = require('util'), _u = requi
 var GeneratorPlugin = function (options) {
     Plugin.apply(this, arguments);
     this.pluginUrl = this.baseUrl;
-    this.styles = ['css/bootstrap.min.css', 'css/styles', 'js/libs/table/jquery.sorter.css','js/libs/backbone-forms/src/backbone-forms.css', 'js/libs/backbone-forms/test/lib/jquery-ui/flick/jquery-ui-1.8.14.custom.css', 'js/libs/jquery-miniColors/jquery.miniColors.css'];
+    this.styles = ['css/bootstrap.min.css', 'css/styles', 'js/libs/table/jquery.sorter.css', 'js/libs/backbone-forms/src/backbone-forms.css', 'js/libs/backbone-forms/test/lib/jquery-ui/flick/jquery-ui-1.8.14.custom.css', 'js/libs/jquery-miniColors/jquery.miniColors.css'];
 
 }
 
@@ -27,7 +27,7 @@ GeneratorPlugin.prototype.filters = function (options) {
             'options':options
         };
         if (_u.isFunction(res.local)) {
-            _u.each(locals, function (v,k) {
+            _u.each(locals, function (v, k) {
                 res.local(k, v);
             })
         } else {
@@ -64,15 +64,13 @@ GeneratorPlugin.prototype.routes = function (options) {
 
     var app = this.app;
     var base = this.baseUrl;
-    if (this.options.index) {
-        app.get(base + this.options.index, function (req, res, next) {
+    var index = this.options.index || 'index.html'
 
-
-            this.local(res, 'styles', this.styles);
-            console.log('styles generated');
-            this.generate(res, 'index.html', makeOptions(req), next);
-        }.bind(this))
-    }
+    app.get(base + index, function (req, res, next) {
+        this.local(res, 'styles', this.styles);
+        console.log('getting ')
+        this.generate(res, 'index.html', makeOptions(req), next);
+    }.bind(this))
 
     app.get(base, function (req, res, next) {
         res.redirect(this.baseUrl + (this.options.index || 'index.html'));
