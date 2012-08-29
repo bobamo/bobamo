@@ -12,6 +12,8 @@
     , "connect":"latest"
     , "consolidate":"latest"
     , "express":"latest"
+    , "npm":"latest"
+    , "request":"latest"
   }
   ,"devDependencies":{
     "should":"latest"

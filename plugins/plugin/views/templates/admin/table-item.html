@@ -1,0 +1,14 @@
+<td>
+    <h2><%= item.get('name') %></h2>
+    <p class="lead"><%= item.get('package') && item.get('package').description || 'None' %></p>
+    <br/>
+    <a href="<%=item.get('url')%>" target="_blank"><%= item.get('url') %></a>
+    <% if (item.get('installed')){%>
+    <div class="pull-right">
+        <a class="btn" href="#/plugin/admin/edit?name=<%=item.id%>"><i class="icon-edit"></i>Edit</a>
+        <a class="btn" href="#/plugin/admin/uninstall?name=<%=item.id%>"><i class="icon-trash"></i>Uninstall</a>
+    </div>
+    <% }else{ %>
+    <a href="#/plugin/admin/install?name=<%=item.id%>" class="btn btn-primary pull-right"><i class="icon-download"></i> Install</a>
+    <% } %>
+</td>
