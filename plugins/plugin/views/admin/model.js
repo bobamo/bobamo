@@ -34,7 +34,7 @@ define(['Backbone'], function (Backbone) {
                 type:'Checkbox'
             }
         },
-        idAttribute:'name',
+        idAttribute:'realName',
         // defaults:defaults,
         initialize:function () {
         },

@@ -5,10 +5,10 @@
     <a href="<%=item.get('url')%>" target="_blank"><%= item.get('url') %></a>
     <% if (item.get('installed')){%>
     <div class="pull-right">
-        <a class="btn" href="#/plugin/admin/edit?name=<%=item.id%>"><i class="icon-edit"></i>Edit</a>
-        <a class="btn" href="#/plugin/admin/uninstall?name=<%=item.id%>"><i class="icon-trash"></i>Uninstall</a>
+        <a class="btn" href="#/plugin/admin/edit?realName=<%=item.id%>"><i class="icon-edit"></i>Configure</a>
+        <a class="btn" href="#/plugin/admin/uninstall?realName=<%=item.id%>"><i class="icon-trash"></i>Uninstall</a>
     </div>
     <% }else{ %>
-    <a href="#/plugin/admin/install?name=<%=item.id%>" class="btn btn-primary pull-right"><i class="icon-download"></i> Install</a>
+    <a href="#/plugin/admin/install?realName=<%=item.id%>" class="btn btn-primary pull-right"><i class="icon-download"></i> Install</a>
     <% } %>
 </td>

@@ -1,4 +1,4 @@
-define(['Backbone', 'jquery', 'underscore', 'plugin/admin/model', 'text!${pluginUrl}/templates/admin/install.html'], function (Backbone, $, _, model, template) {
+define(['Backbone', 'jquery', 'underscore', 'plugin/admin/model', 'text!${pluginUrl}/templates/admin/uninstall.html'], function (Backbone, $, _, model, template) {
     var view = Backbone.View.extend({
         template:_.template(template),
         modelType:model.Model,
@@ -6,24 +6,27 @@ define(['Backbone', 'jquery', 'underscore', 'plugin/admin/model', 'text!${plugin
             _.bindAll(this);
         },
         events:{
-            'click button.install':'doInstall'
+            'click button.uninstall':'doUninstall'
         },
-        doInstall:function () {
-            if (this.model.get('installed')) {
-               window.location.hash = '#/plugin/admin/list';
+        doUninstall:function (e) {
+            e.preventDefault();
+            if (!this.model.get('installed')) {
+                window.location.hash = '#/plugin/admin/list';
 
             } else {
-                $('.install', this.$el).html('Installing...').addClass('disabled');
-                this.model.save('installed',true, {success:this.onSave, error:this.onError});
+                this.model.set('installed', false);
+                $('.uninstall', this.$el).html('Uninstalling...').addClass('disabled');
+
+                this.model.destroy({ success:this.onUninstall});
             }
         },
         onError:function () {
             console.log('error ', arguments);
         },
-        onSave:function (e) {
+        onUninstall:function (e) {
             $('.error-list').empty().hide();
             $('.success-list').empty().hide();
-            $('.install', this.$el).removeClass('disabled').html('Done');
+            $('.uninstall', this.$el).html('Done').removeClass('disabled');
         },
 
         render:function (obj) {

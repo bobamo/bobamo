@@ -1,0 +1,13 @@
+<div class="edit-form">
+    <h2>Uninstall <%= item.get('name') %></h2>
+    <section>
+        <p class="lead"><%=  item.get('package') && item.get('package').description %> </p>
+    </section>
+    <div class="form-actions">
+        <div class="btn-group pull-left">
+            <a href="#plugin/admin/list" class="btn cancel">Cancel</a>
+        </div>
+        <button class="btn pull-right btn-primary save uninstall">Uninstall</button>
+        <div style="clear:both"></div>
+    </div>
+</div>
